@@ -1,0 +1,119 @@
+# ThinkNode M3 - Backcountry Skiing Configuration
+# Optimized for mountain terrain, cold weather, and extended range
+
+# Device Information
+device:
+  role: TRACKER
+  rebroadcast_mode: ALL
+
+# Node Identification
+node_name: "Dog-Backcountry"
+
+# Regional Settings
+lora:
+  region: US  # Change to your region
+  modem_preset: LONG_SLOW  # Better for mountains - penetrates terrain better
+  frequency: US915
+  tx_power: 22      # Maximum power for mountain terrain (if supported, else 20)
+  tx_enabled: true
+  hop_limit: 5      # Higher for mountain mesh routing
+
+# GPS Configuration - Optimized for backcountry
+position:
+  gps_enabled: true
+  gps_update_interval: 30           # More frequent updates in backcountry (30s)
+  position_broadcast_secs: 30       # Send position every 30 seconds
+  position_broadcast_smart_enabled: false  # Always send (don't use smart mode)
+  position_flags: 7                 # Altitude + heading + speed
+
+  # Broadcast every update regardless of distance
+  broadcast_smart_minimum_distance: 0
+  broadcast_smart_minimum_interval_secs: 0
+
+  # GPS Performance - Critical for mountains
+  gps_attempt_time: 180            # Try for 3 minutes to get lock
+  gps_mode: ENABLED                # Always try to get GPS
+
+# Power Management - Balanced for backcountry (4-8 hour trips)
+power:
+  is_power_saving: false           # Disable power saving for real-time tracking
+  on_battery_shutdown_after_secs: 0
+  wait_bluetooth_secs: 0           # Keep BT off to save power
+  mesh_sds_timeout_secs: 0         # Never deep sleep
+  sds_secs: 0                      # Disable super deep sleep
+  ls_secs: 0                       # Disable light sleep
+  min_wake_secs: 0
+
+# Bluetooth - Disabled to save battery
+bluetooth:
+  enabled: false  # Use handheld as gateway
+  mode: RANDOM_PIN
+  fixed_pin: 123456
+
+# Display
+display:
+  screen_on_secs: 0
+
+# Telemetry - Important for cold weather monitoring
+telemetry:
+  device_update_interval: 300       # Battery/temp every 5 min
+  environment_update_interval: 300  # Temp/humidity every 5 min
+  environment_measurement_enabled: true
+  environment_screen_enabled: false
+  environment_display_fahrenheit: true
+
+# Device Metrics - Monitor battery closely
+device_metrics:
+  device_battery_iq_enabled: true
+  device_update_interval: 300
+
+# Network Configuration
+network:
+  wifi_enabled: false
+  eth_enabled: false
+
+# Security
+security:
+  is_managed: false
+  serial_enabled: true
+  debug_log_enabled: false
+
+# Store and Forward - Useful if you add relay nodes
+store_forward:
+  enabled: false
+
+# Neighbor Info
+neighbor_info:
+  enabled: true
+  update_interval: 600
+
+# Detection Sensor - Motion/avalanche detection
+detection_sensor:
+  enabled: true
+  monitor_pin: 0
+  detection_triggered_high: false
+  use_pullup: false
+
+# Range Test - Disable for normal operation
+range_test:
+  enabled: false
+
+# External Notification
+external_notification:
+  enabled: false
+
+# Serial
+serial:
+  enabled: false
+  echo: false
+
+# Canned Messages
+canned_message:
+  enabled: false
+
+# Notes:
+# - Expected battery life: 6-10 hours with 30s updates
+# - LONG_SLOW preset penetrates terrain better than LONG_FAST
+# - Smart position disabled - always broadcasts for safety
+# - No power saving - prioritizes real-time tracking
+# - Higher hop limit for mesh routing around mountains

@@ -1,0 +1,138 @@
+# Muzi Works Base Duo Configuration
+# This file configures the Base Duo as a home base station / router
+
+# Device Information
+device:
+  role: ROUTER  # Acts as mesh router
+  rebroadcast_mode: ALL
+
+# Node Identification
+node_name: "Home-Base"
+
+# Regional Settings - MUST MATCH THINKNODE M3
+# US: US, EU: EU_868, UK: EU_868, AU/NZ: ANZ, etc.
+lora:
+  region: US
+  modem_preset: LONG_FAST
+  frequency: US915  # Must match tracker (US915 for US, EU868 for Europe)
+  tx_power: 20      # dBm (max power for range)
+  tx_enabled: true
+  hop_limit: 3      # Allow mesh routing
+
+  # Router optimization
+  override_duty_cycle: false
+  sx126x_rx_boosted_gain: true  # Better reception
+
+# Position Configuration (Base station is fixed)
+position:
+  gps_enabled: false            # No GPS on base station
+  position_broadcast_secs: 3600 # Broadcast position once per hour
+  fixed_position: true          # Position doesn't change
+
+  # SET YOUR HOME COORDINATES HERE
+  # You can get these from Google Maps
+  latitude_i: 0                 # Latitude * 1e7 (example: 37.7749 = 377749000)
+  longitude_i: 0                # Longitude * 1e7 (example: -122.4194 = -1224194000)
+  altitude: 0                   # Meters above sea level
+
+  # To set coordinates easily, use the Meshtastic app or:
+  # meshtastic --set position.latitude 37.7749
+  # meshtastic --set position.longitude -122.4194
+
+# Power Management (for always-on router)
+power:
+  is_power_saving: false        # Router stays awake
+  on_battery_shutdown_after_secs: 0
+  wait_bluetooth_secs: 300      # Keep BT on for app connection
+  mesh_sds_timeout_secs: 0      # Never sleep
+  sds_secs: 0                   # Disable deep sleep
+  ls_secs: 0                    # Disable light sleep
+  min_wake_secs: 0
+
+# Bluetooth - Enabled for app connection
+bluetooth:
+  enabled: true   # Keep enabled for mobile app connection
+  mode: RANDOM_PIN
+  fixed_pin: 123456
+
+# Display - Base Duo has no display
+display:
+  screen_on_secs: 0
+
+# Telemetry
+telemetry:
+  device_update_interval: 900  # Battery status every 15 min
+
+# Device Metrics
+device_metrics:
+  device_battery_iq_enabled: true
+  device_update_interval: 900
+
+# Network Configuration
+network:
+  wifi_enabled: false
+  eth_enabled: false
+
+# MQTT - Optional cloud integration
+mqtt:
+  enabled: false
+  address: ""
+  username: ""
+  password: ""
+  encryption_enabled: false
+  json_enabled: true
+  tls_enabled: false
+  root: "meshtastic"
+  proxy_to_client_enabled: false
+  map_reporting_enabled: true
+
+  # To enable MQTT:
+  # 1. Set enabled: true
+  # 2. Set address to your MQTT broker (e.g., "mqtt.example.com")
+  # 3. Set username/password if required
+  # 4. For Home Assistant: json_enabled: true, map_reporting_enabled: true
+
+# Security
+security:
+  is_managed: false
+  serial_enabled: true
+  debug_log_enabled: false
+
+# Store and Forward (if using storage module)
+store_forward:
+  enabled: false
+  heartbeat: false
+  records: 0
+  history_return_max: 0
+  history_return_window: 0
+
+# Neighbor Info
+neighbor_info:
+  enabled: true
+  update_interval: 900
+
+# Router specific settings
+router:
+  enabled: true
+
+# Serial
+serial:
+  enabled: true   # Useful for debugging
+  echo: false
+  mode: DEFAULT
+
+# Range Test - Disable for normal operation
+range_test:
+  enabled: false
+
+# External Notification - Disable
+external_notification:
+  enabled: false
+
+# Canned Messages - Disable
+canned_message:
+  enabled: false
+
+# Detection Sensor - Disable
+detection_sensor:
+  enabled: false

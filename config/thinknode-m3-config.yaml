@@ -1,0 +1,113 @@
+# ThinkNode M3 Dog Tracker Configuration
+# This file configures the Elecrow ThinkNode M3 as a GPS tracker for dog tracking
+
+# Device Information
+device:
+  role: TRACKER
+  rebroadcast_mode: ALL
+
+# Node Identification
+node_name: "Dog-Tracker"
+
+# Regional Settings - CHANGE TO MATCH YOUR LOCATION
+# US: US, EU: EU_868, UK: EU_868, AU/NZ: ANZ, etc.
+lora:
+  region: US
+  modem_preset: LONG_FAST
+  frequency: US915  # US915 for US, EU868 for Europe
+  tx_power: 20      # dBm (max power for range)
+  tx_enabled: true
+  hop_limit: 3      # Allow mesh routing
+
+# GPS Configuration
+position:
+  gps_enabled: true
+  gps_update_interval: 60           # Get GPS fix every 60 seconds
+  position_broadcast_secs: 60       # Send position every 60 seconds
+  position_broadcast_smart_enabled: true  # Only send if moved
+  position_flags: 3                 # Altitude + Smart
+
+  # Smart Position - Only broadcast if moved significantly
+  broadcast_smart_minimum_distance: 25    # meters
+  broadcast_smart_minimum_interval_secs: 30  # seconds
+
+  # GPS Performance
+  gps_attempt_time: 120            # Try for 2 minutes to get lock
+  gps_mode: ENABLED                # Always try to get GPS
+
+# Power Management
+power:
+  is_power_saving: true
+  on_battery_shutdown_after_secs: 0  # Don't auto-shutdown
+  wait_bluetooth_secs: 0           # Disable BT to save power (use base as gateway)
+  mesh_sds_timeout_secs: 300       # Deep sleep after 5 min no activity
+  sds_secs: 300                    # Super deep sleep timeout
+  ls_secs: 600                     # Light sleep timeout
+  min_wake_secs: 10                # Minimum wake time
+
+# Bluetooth - Disabled to save battery
+bluetooth:
+  enabled: false  # Disable after initial config - saves ~30% battery
+  mode: RANDOM_PIN
+  fixed_pin: 123456
+
+# Display - ThinkNode M3 has no display
+display:
+  screen_on_secs: 0
+
+# Telemetry - Environmental sensors
+telemetry:
+  device_update_interval: 900       # Update battery/voltage every 15 min
+  environment_update_interval: 900  # Update temp/humidity every 15 min
+  environment_measurement_enabled: true
+  environment_screen_enabled: false
+  environment_display_fahrenheit: true  # Change to false for Celsius
+
+# Device Metrics
+device_metrics:
+  device_battery_iq_enabled: true
+  device_update_interval: 900
+
+# Network Configuration
+network:
+  wifi_enabled: false  # Disable WiFi to save power
+  eth_enabled: false
+
+# Security
+security:
+  is_managed: false
+  serial_enabled: true
+  debug_log_enabled: false
+
+# Store and Forward
+store_forward:
+  enabled: false  # Not needed for tracker
+
+# Neighbor Info
+neighbor_info:
+  enabled: true
+  update_interval: 900
+
+# Detection Sensor (Uses accelerometer for motion)
+detection_sensor:
+  enabled: true
+  monitor_pin: 0
+  detection_triggered_high: false
+  use_pullup: false
+
+# Range Test - Disable for normal operation
+range_test:
+  enabled: false
+
+# External Notification - Disable
+external_notification:
+  enabled: false
+
+# Serial - Disable to save power
+serial:
+  enabled: false
+  echo: false
+
+# Canned Messages - Not needed for tracker
+canned_message:
+  enabled: false

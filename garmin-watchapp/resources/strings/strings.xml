@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<resources>
+    <!-- App Name -->
+    <string id="AppName">Mesh Tracker</string>
+
+    <!-- Settings -->
+    <string id="TargetNode">Target Node</string>
+    <string id="AutoSelect">Auto Select</string>
+    <string id="Nearest">Nearest</string>
+    <string id="Manual">Manual</string>
+
+    <string id="Units">Units</string>
+    <string id="Metric">Metric</string>
+    <string id="Imperial">Imperial</string>
+
+    <string id="UpdateRate">Update Rate (seconds)</string>
+
+    <!-- Status Messages -->
+    <string id="Searching">Searching for iOS Bridge...</string>
+    <string id="Connecting">Connecting...</string>
+    <string id="Connected">Connected</string>
+    <string id="Disconnected">Disconnected</string>
+    <string id="NoData">No Position Data</string>
+
+    <!-- Errors -->
+    <string id="ErrorBLE">BLE Error</string>
+    <string id="ErrorNoGPS">GPS Not Available</string>
+    <string id="ErrorNoDevice">No Device Found</string>
+</resources>

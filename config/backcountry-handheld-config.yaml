@@ -1,0 +1,99 @@
+# Portable Handheld/Phone Configuration for Backcountry
+# This is for a second Meshtastic device you carry (phone/handheld)
+# Base Duo can be left at trailhead or car as relay
+
+# Device Information
+device:
+  role: CLIENT  # Not router - you're mobile too
+  rebroadcast_mode: ALL
+
+# Node Identification
+node_name: "Skier-Handheld"
+
+# Regional Settings - MUST MATCH TRACKER
+lora:
+  region: US
+  modem_preset: LONG_SLOW  # Match tracker
+  frequency: US915
+  tx_power: 22      # Maximum power
+  tx_enabled: true
+  hop_limit: 5
+
+# Position Configuration - Track yourself too
+position:
+  gps_enabled: true            # Phone GPS or handheld GPS
+  gps_update_interval: 60      # Update your position too
+  position_broadcast_secs: 60  # Share your location
+  fixed_position: false
+
+  position_broadcast_smart_enabled: false  # Always send
+  position_flags: 7  # Altitude + heading + speed
+
+# Power Management
+power:
+  is_power_saving: false       # Stay awake while skiing
+  wait_bluetooth_secs: 0       # Keep connected to phone
+  mesh_sds_timeout_secs: 0
+  sds_secs: 0
+  ls_secs: 0
+
+# Bluetooth - Keep on for phone connection
+bluetooth:
+  enabled: true   # For phone app connection
+  mode: RANDOM_PIN
+  fixed_pin: 123456
+
+# Telemetry
+telemetry:
+  device_update_interval: 300
+  environment_update_interval: 300
+  environment_measurement_enabled: true
+  environment_display_fahrenheit: true
+
+# Network
+network:
+  wifi_enabled: false
+  eth_enabled: false
+
+# Security
+security:
+  is_managed: false
+  serial_enabled: true
+  debug_log_enabled: false
+
+# Store and Forward
+store_forward:
+  enabled: false
+
+# Neighbor Info
+neighbor_info:
+  enabled: true
+  update_interval: 600
+
+# Detection Sensor
+detection_sensor:
+  enabled: false
+
+# Range Test
+range_test:
+  enabled: false
+
+# External Notification
+external_notification:
+  enabled: false
+
+# Serial
+serial:
+  enabled: true
+  echo: false
+
+# Canned Messages - Useful for quick comms
+canned_message:
+  enabled: false  # Enable if you want preset messages
+
+# Notes:
+# - This device stays with you while skiing
+# - Connect to phone via Bluetooth
+# - Receives dog tracker updates
+# - Also broadcasts your position
+# - Can message other mesh users

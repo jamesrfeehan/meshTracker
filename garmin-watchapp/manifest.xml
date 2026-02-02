@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!-- Garmin Connect IQ App Manifest -->
+<iq:manifest version="3" xmlns:iq="http://www.garmin.com/xml/connectiq">
+
+    <!-- App Metadata -->
+    <iq:application entry="TrackerApp" id="f9a3b8c7d6e5f4a3" launcherIcon="@Drawables.LauncherIcon" minApiLevel="4.0.0" name="@Strings.AppName" type="watch-app" version="1.0.0">
+
+        <!-- Supported Products -->
+        <iq:products>
+            <!-- Garmin Instinct 2X Solar -->
+            <iq:product id="instinct2x"/>
+
+            <!-- Also compatible with: -->
+            <iq:product id="instinct2"/>
+            <iq:product id="fenix7"/>
+            <iq:product id="fenix7s"/>
+            <iq:product id="fenix7x"/>
+            <iq:product id="epix2"/>
+            <iq:product id="fr955"/>
+            <iq:product id="fr265"/>
+        </iq:products>
+
+        <!-- Permissions -->
+        <iq:permissions>
+            <!-- Required for BLE connectivity -->
+            <iq:uses-permission id="Ble"/>
+
+            <!-- Required for GPS position -->
+            <iq:uses-permission id="Position"/>
+            <iq:uses-permission id="Positioning"/>
+
+            <!-- Required for background updates -->
+            <iq:uses-permission id="Background"/>
+
+            <!-- For data storage -->
+            <iq:uses-permission id="Storage"/>
+
+            <!-- For notifications -->
+            <iq:uses-permission id="Communications"/>
+        </iq:permissions>
+
+        <!-- Languages -->
+        <iq:languages>
+            <iq:language>eng</iq:language>
+        </iq:languages>
+
+        <!-- App Settings -->
+        <iq:settings>
+            <iq:setting propertyKey="@Properties.TargetNode" title="@Strings.TargetNode">
+                <iq:settingConfig type="list">
+                    <iq:listEntry value="auto">@Strings.AutoSelect</iq:listEntry>
+                    <iq:listEntry value="nearest">@Strings.Nearest</iq:listEntry>
+                    <iq:listEntry value="manual">@Strings.Manual</iq:listEntry>
+                </iq:settingConfig>
+            </iq:setting>
+
+            <iq:setting propertyKey="@Properties.Units" title="@Strings.Units">
+                <iq:settingConfig type="list">
+                    <iq:listEntry value="metric">@Strings.Metric</iq:listEntry>
+                    <iq:listEntry value="imperial">@Strings.Imperial</iq:listEntry>
+                </iq:settingConfig>
+            </iq:setting>
+
+            <iq:setting propertyKey="@Properties.UpdateRate" title="@Strings.UpdateRate">
+                <iq:settingConfig type="numeric" max="60" min="1">
+                    <iq:settingDefault>5</iq:settingDefault>
+                </iq:settingConfig>
+            </iq:setting>
+        </iq:settings>
+
+        <!-- BLE Profile -->
+        <iq:bleProfiles>
+            <!-- Custom tracker service -->
+            <iq:bleProfile id="trackerService">
+                <iq:service uuid="0000181A-0000-1000-8000-00805f9b34fb">
+                    <!-- Position characteristic -->
+                    <iq:characteristic uuid="00002A67-0000-1000-8000-00805f9b34fb">
+                        <iq:descriptor uuid="2902"/>
+                    </iq:characteristic>
+
+                    <!-- Status characteristic -->
+                    <iq:characteristic uuid="00002A68-0000-1000-8000-00805f9b34fb"/>
+                </iq:service>
+            </iq:bleProfile>
+        </iq:bleProfiles>
+
+    </iq:application>
+</iq:manifest>

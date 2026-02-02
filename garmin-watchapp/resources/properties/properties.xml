@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<resources>
+    <!-- App Properties -->
+    <properties>
+        <!-- Target node selection -->
+        <property id="TargetNode" type="string">auto</property>
+
+        <!-- Units (metric or imperial) -->
+        <property id="Units" type="string">metric</property>
+
+        <!-- Update rate in seconds -->
+        <property id="UpdateRate" type="number">5</property>
+
+        <!-- Auto-reconnect on disconnect -->
+        <property id="AutoReconnect" type="boolean">true</property>
+
+        <!-- Show altitude delta -->
+        <property id="ShowAltitude" type="boolean">true</property>
+    </properties>
+</resources>
